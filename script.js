@@ -1,54 +1,62 @@
-
 /* this time display is an id so not sure why the # is not working on the code. look into*/
 var timeDisplayEl = $('#time-display');
-var saveBtn = $('.saveBtn');
+/*
+var saveBtn = $('.saveBtn');*/
 
+var currentTime = moment().format("LLLL");
+$("#currentDay").text(moment().format("LLLL"));
 
-
-
-
-
-
-
-
-    var currentTime = moment().format('MMM DD, YYYY [at] hh:mm:ss a');
-   $('#currentDay').html(currentTime); 
-  
-  //this function is for the past/present/future time blocks in planner
+//this function is for the past/present/future time blocks in planner for color coding, make sure to use a number for parsing
 function colorCode() {
-  var hour = moment().hour();
-  $(".time-block").each(function() {
+  var hour = moment().hours();
+  $(".time-block").each(function () {
     var timeNow = parseInt($(this).attr("id").split("hour")[1]);
 
-    if (hour< timeNow) {
-      $(this).addClass(".past").removeClass("past present");
+    if (timeNow < hour) {
+      $(this).addClass("past");
+    } else if (hour ===  timeNow) {
+      $(this).addClass("present");
+      $(this).removeClass("past");
+    } else   {
+      $(this).removeClass("past");
+      $(this).removeClass("present");
+      $(this).addClass("future");
     }
-    else if (hour > timeNow) {
-      $(this).addClass(".future").removeClass("past future")
-    }
-    else if (hour === timeNow) {
-    $(this).addClass(".present").removeClss("past future")
-  }
-})
-};
+  });
+}
 colorCode();
-
-
-saveBtn.on("click", function() {
- var timePlan = $(this).siblings(".hour").text();
-  var planText = $(this).siblings(".description").val();
+var interval = setInterval(colorCode, 15000)
+/*so that the buttons save the information in the fields*/
+$(".saveBtn").on("click", function () {
+  var timePlan = $(this).parent().attr("id");
+  var planText = $(this).siblings(".plans").val();
   localStorage.setItem(timePlan, planText);
 });
 
 function getPlan() {
-$(".hour").each(function() {
-  var timeNow =$(this).text();
-  var planInfo = localStorage.getItem(timeNow);
+  $(".hour").each(function () {
+    var timeNow = $(this).text();
+    var planInfo = localStorage.getItem(timeNow);
+   
 
-  if(planInfo !==null) {
-    $(this).siblings(".description").val(planInfo);
-  }
-});
+    if (planInfo !== null) {
+      $(this).siblings(".plans").val(planInfo);
+    }
+  });
 }
+
+$("8-hour .plans").val(localStorage.getItem("timePlan"))
+$("9-hour .plans").val(localStorage.getItem("timePlan"))
+$("10-hour .plans").val(localStorage.getItem("timePlan"))
+$("11-hour .plans").val(localStorage.getItem("timePlan"))
+$("12-hour .plans").val(localStorage.getItem("timePlan"))
+$("13-hour .plans").val(localStorage.getItem("timePlan"))
+$("14-hour .plans").val(localStorage.getItem("timePlan"))
+$("15-hour .plans").val(localStorage.getItem("timePlan"))
+$("16-hour .plans").val(localStorage.getItem("timePlan"))
+$("17-hour .plans").val(localStorage.getItem("timePlan"))
+$("18-hour .plans").val(localStorage.getItem("timePlan"))
+$("19-hour .plans").val(localStorage.getItem("timePlan"))
+$("20-hour .plans").val(localStorage.getItem("timePlan"))
 
 getPlan();
