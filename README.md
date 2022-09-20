@@ -1,6 +1,6 @@
 # Daily-Scheduling-Calendar
 
-
+DEPLOY LINK: https://bloomcaster.github.io/Daily-Scheduling-Calendar/
 
 This is a daily work calender that enables the user via hour long time blocks text in anything that they would need to remember for the day. The time blocks are color coded with past, present and future colors as the day progresses starting at 8AM and ending at 8PM (the time in the code uses military time to work properly). The save buttons are whimsical as coffee mug reprsents the morning hours, the hamburger is for lunch time, the cogs for meetings (again for effect, of course meeting can also happen in the mnorning) and the cocktail hour afterwards from 5pm on. 
 
