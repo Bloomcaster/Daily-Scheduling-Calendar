@@ -14,9 +14,12 @@ function colorCode() {
 
     if (timeNow < hour) {
       $(this).addClass("past");
+      $(this).removeClass("present");
+      $(this).removeClass("future");
     } else if (hour ===  timeNow) {
       $(this).addClass("present");
       $(this).removeClass("past");
+      $(this).removeClass("future");
     } else   {
       $(this).removeClass("past");
       $(this).removeClass("present");
@@ -45,7 +48,7 @@ function getPlan() {
   });
 }
 
-$("8-hour .plans").val(localStorage.getItem("timePlan"))
+$("8-hour .plans").val(localStorage.getItem(""))
 $("9-hour .plans").val(localStorage.getItem("timePlan"))
 $("10-hour .plans").val(localStorage.getItem("timePlan"))
 $("11-hour .plans").val(localStorage.getItem("timePlan"))
